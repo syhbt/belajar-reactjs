@@ -15,22 +15,22 @@ class ListBiodataComponent extends Component {
 
     deleteBiodata(id){
         BiodataService.deleteBiodata(id).then(res => {
-            this.setState({biodatas: this.state.biodatas.filter(biodata.id !== id)});
+            this.setState({biodatas: this.state.biodatas.filter(biodata => biodata.id !== id)});
         });
     }
     viewBiodata(id){
-        this.props.history.push('/view-biodata/${id}');
+        this.props.history.push(`/view-biodata/${id}`);
     }
     editBiodata(id){
-        this.props.history.push('/edit-biodata/${id}');
+        this.props.history.push(`/edit-biodata/${id}`);
     }
     componentDidMount(){
-        BiodataService.getBiodata.then((res) => {
+        BiodataService.getBiodata().then((res) => {
             this.setState({biodatas: res.data});
         });
     }
     addBiodata(){
-        thist.props.history.push('/add-biodata/_add');
+        this.props.history.push('/add-biodata/_add');
     }
 
     render(){
@@ -53,10 +53,10 @@ class ListBiodataComponent extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.Biodatas.map(
+                                    this.state.biodatas.map(
                                         biodata => 
                                         <tr key = {biodata.id}>
-                                             <td> { biodata.name} </td>   
+                                             <td> { biodata.nama} </td>   
                                              <td> {biodata.alamat}</td>
                                              <td>
                                                  <button onClick={ () => this.editBiodata(biodata.id)} className="btn btn-info">Update </button>

@@ -9,7 +9,7 @@ class BiodataService {
     createBiodata(biodata){
         return axios.post(BIODATA_API_BASE_URL, biodata);
     }
-    getBiodatabyId(biodataId){
+    getBiodataById(biodataId){
         return axios.get(BIODATA_API_BASE_URL + '/' + biodataId);
     }
     updateBiodata(biodata, biodataId){

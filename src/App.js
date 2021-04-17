@@ -1,10 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ListBiodataComponent from './components/ListBiodataComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from "./components/FooterComponent";
+import CreateBiodataComponent from "./components/CreateBiodataComponent";
+import ViewBiodataComponent from "./components/ViewBiodataComponent";
 
 
 function App() {

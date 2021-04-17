@@ -7,46 +7,46 @@ class CreateBiodataComponent extends Component {
 
         this.state = {
             id : this.props.match.params.id,
-            name: '',
+            nama: '',
             alamat: ''
         }
-        this.changeNameHandler = this.changeNameHandler.bind(this);
+        this.changeNamaHandler = this.changeNamaHandler.bind(this);
         this.changeAlamatHandler = this.changeAlamatHandler.bind(this);
         this.saveOrUpdateBiodata = this.saveOrUpdateBiodata.bind(this);
     }
 
     componentDidMount( ){
 
-        if (thist.state == 'add') {
+        if (this.state === '_add') {
             return
         }
         else{
-            BiodataService.getBiodatabyId(this.state.id).then( (res) => {
+            BiodataService.getBiodataById(this.state.id).then( (res) => {
                 let biodata = res.data;
-                this.setState({name: biodata.name,
+                this.setState({nama: biodata.nama,
                     alamat: biodata.alamat
                 });
             });
         }
     }
-    saceOrUpdateBiodata = (b) => {
+    saveOrUpdateBiodata = (b) => {
         b.PreventDefault();
-        let biodata = {name: this.state.name, alamat: this.state.alamat};
+        let biodata = {nama: this.state.nama, alamat: this.state.alamat};
         console.log('biodata =>' + JSON.stringify(biodata));
 
-        if (this.state.id == '_add') {
+        if (this.state.id === '_add') {
             BiodataService.createBiodata(biodata).then (res =>{
                 this.props.history.push('./biodata');
             });
         }
         else {
-            BiodataService.updateBiodata(biodata, this.state,id).then (res =>{
+            BiodataService.updateBiodata(biodata, this.state.id).then (res =>{
                 this.props.history.push('./biodata');
             });
         }
     }
-    changeNameHandler = (event) => {
-        this.setState({name: event.target.value});
+    changeNamaHandler = (event) => {
+        this.setState({nama: event.target.value});
     }
     changeAlamatHandler = (event) => {
         this.setState({alamat: event.target.value});
@@ -56,7 +56,7 @@ class CreateBiodataComponent extends Component {
     }
 
     getTitle(){
-        if (this.state.id == '_add') {
+        if (this.state.id === '_add') {
             return <h3 className="text-center">Add Biodata</h3>           
         }
         else {
@@ -77,9 +77,9 @@ class CreateBiodataComponent extends Component {
                                 <div className = "card-body">
                                     <form>
                                         <div className = "form-group">
-                                            <label> First Name: </label>
-                                            <input placeholder="First Name" name="name" className="form-control" 
-                                                value={this.state.name} onChange={this.changeNameHandler}/>
+                                            <label> Nama: </label>
+                                            <input placeholder="Nama" name="name" className="form-control" 
+                                                value={this.state.nama} onChange={this.changeNamaHandler}/>
                                         </div>
                                         
                                         <div className = "form-group">
